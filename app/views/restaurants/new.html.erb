@@ -4,6 +4,6 @@
   <%= f.input :name %>
   <%= f.input :address %>
   <%= f.input :phone_number %>
-  <%= f.input :category %>
+  <%= f.input :category, label: "Category", collection: Restaurant::CATEGORIES %>
   <%= f.submit %>
 <% end %>

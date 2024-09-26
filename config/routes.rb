@@ -12,20 +12,29 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  # READ
-  get "restaurants", to: "restaurants#index"
 
-  # CREATE (:as "new_restaurant" will allow us to redirect or create a link to "new_restaurant_path")
-  get "restaurants/new", to: "restaurants#new"
+  #### NEW WAY OF DOING ROUTES USING RESOURCES ####
+  resources :restaurants, only: [ :index, :show, :new, :create ] do
+    resources :reviews, only: [ :new, :create ]
+  end
 
-  # CREATE
-  post "restaurants", to: "restaurants#create"
 
-  # READ
-  get "restaurants/:id", to: "restaurants#show", as: "restaurant"
 
-  # DELETE
-  delete "restaurants/:id", to: "restaurants#destroy"
+  #### OLD WAY OF DOING THE ROUTES ###
+  # # READ
+  # get "restaurants", to: "restaurants#index"
+
+  # # CREATE (:as "new_restaurant" will allow us to redirect or create a link to "new_restaurant_path")
+  # get "restaurants/new", to: "restaurants#new"
+
+  # # CREATE
+  # post "restaurants", to: "restaurants#create"
+
+  # # READ
+  # get "restaurants/:id", to: "restaurants#show", as: "restaurant"
+
+  # # DELETE
+  # delete "restaurants/:id", to: "restaurants#destroy"
 
   #
 end

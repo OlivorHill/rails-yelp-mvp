@@ -5,3 +5,13 @@
 <p> <%= @restaurant.category.capitalize %> </p>
 
 <%= link_to "Back to All Restaurants", restaurants_path, class: "btn btn-secondary text-white" %>
+
+
+
+<h6> All reviews for <%= @restaurant.name %> </h6>
+
+<% @restaurant.reviews.each do |review| %>
+<li> <%= review.content%> </li>
+<% end %>
+
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-primary text-white" %>

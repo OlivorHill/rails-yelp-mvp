@@ -17,9 +17,13 @@ class RestaurantsController < ApplicationController
 
   # CREATE Step 2 - Form sumbission and save new restaurant
   def create
-    restaurant = Restaurant.new(restaurant_params)
-    restaurant.save
-    redirect_to restaurant_path(restaurant)
+    @restaurant = Restaurant.new(restaurant_params)
+    if @restaurant.save
+      redirect_to restaurant_path(@restaurant) # Redirect only if save is successful
+    else
+      # Render the new form again with error messages
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
